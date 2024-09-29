@@ -1,0 +1,31 @@
+.container{
+
+    width: 100%;
+    padding: 30px 4.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.arrow{
+
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    color: var(--first-text-color);
+    border-radius: 50%;
+    background-color: var(--bg-opacity);
+
+}
+
+.slider_cont{
+
+    width: calc(100% - 120px);
+    height: 100%;
+    background-color: aqua;
+
+}

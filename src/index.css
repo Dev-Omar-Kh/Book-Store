@@ -20,6 +20,10 @@
     --first-text-color: #555;
     --seconde-text-color: #afafaf;
 
+    /* ====== ====== */
+/* 
+    --bg-opacity: rgba(47, 47, 47, 0.1); */
+
 }
 
 body{

@@ -14,7 +14,7 @@ import './active.css';
 import Search from './Search-Bar/Search';
 import { AnimatePresence } from 'framer-motion';
 
-export default function Header() {
+export default function Header({height}) {
 
     // ====== handel-height-nav-on-phone-view ====== //
 
@@ -32,6 +32,7 @@ export default function Header() {
                 const headerHeight = headerCont.offsetHeight;
 
                 setContainerHeight(headerHeight);
+                height(headerHeight)
 
                 if (navBar) {
 
@@ -58,7 +59,7 @@ export default function Header() {
 
         };
 
-    } , [containerHeight]);
+    } , [containerHeight , height]);
 
     // ====== nav-for-phone ======
 
