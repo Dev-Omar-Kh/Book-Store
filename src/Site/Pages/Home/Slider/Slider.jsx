@@ -28,6 +28,23 @@ export default function Slider({height}) {
 
     }
 
+    useEffect(() => {
+        
+        books.forEach(book => {
+
+            const img = new Image();
+            img.src = book.imageURL;
+
+        });
+
+        const interval = setInterval(() => {
+            setCurrentBookID(currentId => currentId === books.length - 1 ? 0 : currentId + 1);
+        }, 8000);
+
+        return () => clearInterval(interval);
+
+    }, [books]);
+
     // ====== container-height ====== //
 
     const [contHeight, setContHeight] = useState(0);
