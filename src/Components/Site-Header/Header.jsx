@@ -19,6 +19,7 @@ export default function Header({height}) {
     // ====== handel-height-nav-on-phone-view ====== //
 
     const [containerHeight, setContainerHeight] = useState(0);
+    const [topHeaderHeight, setTopHeaderHeight] = useState(0);
 
     useEffect(() => {
 
@@ -31,7 +32,7 @@ export default function Header({height}) {
 
                 const headerHeight = headerCont.offsetHeight;
 
-                setContainerHeight(headerHeight);
+                setContainerHeight(headerHeight - topHeaderHeight);
                 height(headerHeight)
 
                 if (navBar) {
@@ -59,15 +60,18 @@ export default function Header({height}) {
 
         };
 
-    } , [containerHeight , height]);
+    } , [containerHeight , height , topHeaderHeight]);
 
-    // ====== nav-for-phone ======
+    // ====== nav-for-phone-&-manage-scroll ====== //
+
+    const [scrollValueY, setScrollValueY] = useState(0);
 
     useEffect(() => {
 
         const navPh = document.getElementById('nav_ph');
         const navBar = document.getElementById('navBar');
         const topHeader = document.getElementById('topHeader');
+        const headerCont = document.getElementById('headerCont');
 
         navPh.onclick = () => {
 
@@ -90,7 +94,37 @@ export default function Header({height}) {
 
         }
 
-    } , []);
+        const handleHeaderTop = () => {
+
+            const scrollY = window.scrollY;
+            setTopHeaderHeight(topHeader.offsetHeight + 2);
+
+            if(scrollY > scrollValueY){
+
+                headerCont.style.top = - topHeaderHeight + 'px';
+
+            }
+            else if(scrollY < scrollValueY){
+
+                setTopHeaderHeight(0);
+
+                headerCont.style.top = '0px';
+
+            }
+
+            setScrollValueY(scrollY);
+
+        }
+
+        window.addEventListener('scroll' , handleHeaderTop);
+
+        return () => {
+
+            window.removeEventListener('scroll' , handleHeaderTop);
+
+        }
+
+    } , [scrollValueY , topHeaderHeight]);
 
     // ====== display-search-icon ====== //
 

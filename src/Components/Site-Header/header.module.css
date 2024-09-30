@@ -1,8 +1,14 @@
 .container{
 
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 100%;
     overflow: hidden;
+    background-color: var(--first-color);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease;
+    z-index: 100;
 
 }
 
@@ -314,7 +320,7 @@ nav ul a li{
 
     .nav{
 
-        position: fixed ;
+        position: fixed;
         left: 0;
         width: 100%;
         padding: 50px 4.5%;
