@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import Search from './Search-Bar/Search';
 
 
 import { FaFacebookF , FaYoutube , FaInstagram , FaLinkedinIn , FaRegUser} from "react-icons/fa";
@@ -11,8 +13,6 @@ import { GrArticle } from "react-icons/gr";
 
 import headerCSS from './header.module.css';
 import './active.css';
-import Search from './Search-Bar/Search';
-import { AnimatePresence } from 'framer-motion';
 
 export default function Header({height}) {
 
@@ -202,7 +202,7 @@ export default function Header({height}) {
 
                 <Link to={'/'} className={headerCSS.logo}>
 
-                    <img src={require('../../Images/logo.png')} alt="" />
+                    <img src={require('../../../Images/logo.png')} alt="" />
 
                 </Link>
 

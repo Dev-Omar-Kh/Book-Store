@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Header from '../Components/Site-Header/Header'
 import { Outlet } from 'react-router-dom'
+import Header from './../Components/Site/Site-Header/Header';
 
 export default function SiteLayout() {
 
