@@ -125,7 +125,7 @@
 
 }
 
-.pro_card:hover .pro_img_img{
+.pro_card a:hover .pro_img_img{
 
     scale: 1.25;
     rotate: -10deg;
