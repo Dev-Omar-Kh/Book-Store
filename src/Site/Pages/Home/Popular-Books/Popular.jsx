@@ -4,6 +4,8 @@ import commonCSS from '../../../../Styles/home_common.module.css';
 import popularCSS from './popular.module.css';
 import FakeDataBooks from '../../../../FakeDataBooks';
 import Products from '../../../../Components/Site/Products/Products';
+import { IoMdArrowRoundForward } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 export default function Popular() {
 
@@ -69,6 +71,15 @@ export default function Popular() {
             </div>
 
             <Products data={booksData} />
+
+            {booksData.length > 5 ? <div className={commonCSS.link}>
+
+                <Link>
+                    <p>View more books</p>
+                    <IoMdArrowRoundForward />
+                </Link>
+
+            </div> : ''}
 
         </div>
 

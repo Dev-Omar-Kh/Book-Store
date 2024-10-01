@@ -34,6 +34,37 @@
 
 }
 
+.link {
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.link a {
+
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 18px;
+    color: var(--active-color);
+    border-radius: 5px;
+    border: 1px solid var(--active-color);
+    background-color: transparent;
+    transition: 0.3s;
+
+}
+
+.link a:hover {
+
+    gap: 15px;
+    color: var(--first-color);
+    background-color: var(--active-color);
+
+}
+
 /* ====== responsive-style ====== */
 
 @media(max-width: 1000px){

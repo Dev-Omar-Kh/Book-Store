@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import commonCSS from '../../../../Styles/home_common.module.css';
 import Products from '../../../../Components/Site/Products/Products';
-import featuredCSS from './featured.module.css';
 import { IoMdArrowRoundForward } from 'react-icons/io';
 
 export default function Featured() {
@@ -29,7 +28,7 @@ export default function Featured() {
 
             <Products data={featuredBooks} />
 
-            <div className={featuredCSS.link}>
+            <div className={commonCSS.link}>
 
                 <Link>
                     <p>View all books</p>
