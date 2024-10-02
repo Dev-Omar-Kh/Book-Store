@@ -7,8 +7,6 @@ import productsCSS from '../../../Styles/products.module.css';
 
 export default function Products({data}) {
 
-    // console.log(data);
-
     return <React.Fragment>
 
         <div className={productsCSS.container}>
@@ -41,7 +39,17 @@ export default function Products({data}) {
 
                         <p className={productsCSS.some_about}>{book.bookDescription.split(' ').slice(0 , 10).join(' ') + '...'}</p>
 
-                        <p className={productsCSS.price}>10000 <span>EGP</span></p>
+                        <div className={productsCSS.prices_box}>
+                            {book.offer && <p className={productsCSS.price}>
+                                {(book.price - (book.price * (book.offer / 100))).toFixed(2)}
+                                <span>EGP</span>
+                            </p>}
+                            
+                            <p className={`${productsCSS.price} ${book.offer ? productsCSS.old_price : ''}`}>
+                                {book.price.toFixed(2)} 
+                                <span style={{color : book.offer ? 'var(--hash-opacity)' : 'var(--active-color)'}}>EGP</span>
+                            </p>
+                        </div>
 
                     </div>
                 

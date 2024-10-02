@@ -8,6 +8,7 @@ const FakeDataBooks = [
 		category: "Mystery",
 		bookDescription:
 			"Since Gran died a few months ago, twenty-five-year-old Molly has been navigating life's complexities all by herself. No matter—she throws herself with gusto into her work as a hotel maid. Her unique character, along with her obsessive love of cleaning and proper etiquette, make her an ideal fit for the job. She delights in donning her crisp uniform each morning, stocking her cart with miniature soaps and bottles, and returning guest rooms at the Regency Grand Hotel to a state of perfection.",
+		price: 480,
 		bookPDFURL: "https://www.goodreads.com/book/show/55196813-the-maid",
 	},
 	{
@@ -19,8 +20,9 @@ const FakeDataBooks = [
 		category: "Fiction",
 		bookDescription:
 			"By the time Carrie retires from tennis, she is the best player the world has ever seen. She has shattered every record and claimed twenty Slam titles. And if you ask her, she is entitled to every one. She sacrificed nearly everything to become the best, with her father as her coach.\n\nBut six years after her retirement, Carrie finds herself sitting in the stands of the 1994 US Open, watching her record be taken from her by a brutal, stunning, British player named Nicki Chan.",
+		price: 350,
 		bookPDFURL:
-			"https://www.goodreads.com/book/show/60435878-carrie-soto-is-back",
+		"https://www.goodreads.com/book/show/60435878-carrie-soto-is-back",
 	},
 	{
 		_id: "651a50f946a92da7981902f9",
@@ -31,8 +33,10 @@ const FakeDataBooks = [
 		category: "Fantasy",
 		bookDescription:
 			"Bryce Quinlan and Hunt Athalar are trying to get back to normal―they may have saved Crescent City, but with so much upheaval in their lives lately, they mostly want a chance to relax. Slow down. Figure out what the future holds.\n\nThe Asteri have kept their word so far, leaving Bryce and Hunt alone. But with the rebels chipping away at the Asteri’s power, the threat the rulers pose is growing. As Bryce, Hunt, and their friends get pulled into the rebels’ plans, the choice becomes clear: stay silent while others are oppressed, or fight for what’s right. And they’ve never been very good at staying silent.",
+		price: 642,
+		offer: 5,
 		bookPDFURL:
-			"https://www.goodreads.com/book/show/40132775-house-of-sky-and-breath",
+		"https://www.goodreads.com/book/show/40132775-house-of-sky-and-breath",
 	},
 	{
 		_id: "651a513a46a92da7981902fa",
@@ -43,6 +47,7 @@ const FakeDataBooks = [
 		category: "Fiction",
 		bookDescription:
 			"Nora Stephens’ life is books—she’s read them all—and she is not that type of heroine. Not the plucky one, not the laidback dream girl, and especially not the sweetheart. In fact, the only people Nora is a heroine for are her clients, for whom she lands enormous deals as a cutthroat literary agent, and her beloved little sister Libby.",
+		price: 489,
 		bookPDFURL: "https://www.goodreads.com/book/show/58690308-book-lovers",
 	},
 	{
@@ -54,8 +59,9 @@ const FakeDataBooks = [
 		category: "Fiction",
 		bookDescription:
 			"A novel of art, time travel, love, and plague that takes the reader from Vancouver Island in 1912 to a dark colony on the moon five hundred years later, unfurling a story of humanity across centuries and space.\n\nEdwin St. Andrew is eighteen years old when he crosses the Atlantic by steamship, exiled from polite society following an ill-conceived diatribe at a dinner party. He enters the forest, spellbound by the beauty of the Canadian wilderness, and suddenly hears th",
+		price: 641,
 		bookPDFURL:
-			"https://www.goodreads.com/book/show/58446227-sea-of-tranquility",
+		"https://www.goodreads.com/book/show/58446227-sea-of-tranquility",
 	},
 	{
 		_id: "651a51b646a92da7981902fc",
@@ -66,8 +72,10 @@ const FakeDataBooks = [
 		category: "Horror",
 		bookDescription:
 			"A wildly inventive spin on the supernatural thriller, about a woman working as a nanny for a young boy with strange and disturbing secrets.\n\nMallory Quinn is fresh out of rehab when she takes a job as a babysitter for Ted and Caroline Maxwell. She is to look after their five-year-old son, Teddy.\n\nMallory immediately loves it. She has her own living space, goes out for nightly runs, and has the stability she craves. And she sincerely bonds with Teddy, a sweet, shy boy who is never without his sketchbook and pencil. His drawings are the usual fare: trees, rabbits, balloons. But one day, he draws something different: a man in a forest, dragging a woman’s lifeless body.",
+		price: 984,
+		offer: 7.5,
 		bookPDFURL:
-			"https://www.goodreads.com/book/show/58724923-hidden-pictures",
+		"https://www.goodreads.com/book/show/58724923-hidden-pictures",
 	},
 	{
 		_id: "651a52a746a92da7981902ff",
@@ -78,8 +86,9 @@ const FakeDataBooks = [
 		category: "History",
 		bookDescription:
 			"Chemist Elizabeth Zott is not your average woman. In fact, Elizabeth Zott would be the first to point out that there is no such thing as an average woman. But it’s the early 1960s and her all-male team at Hastings Research Institute takes a very unscientific view of equality. Except for one: Calvin Evans; the lonely, brilliant, Nobel–prize nominated grudge-holder who falls in love with—of all things—her mind. True chemistry results.",
+		price: 874,
 		bookPDFURL:
-			"https://www.goodreads.com/book/show/58065033-lessons-in-chemistry",
+		"https://www.goodreads.com/book/show/58065033-lessons-in-chemistry",
 	},
 	{
 		_id: "651a52ec46a92da798190300",
@@ -90,8 +99,10 @@ const FakeDataBooks = [
 		category: "Autobiography",
 		bookDescription:
 			"A heartbreaking and hilarious memoir by iCarly and Sam & Cat star Jennette McCurdy about her struggles as a former child actor—including eating disorders, addiction, and a complicated relationship with her overbearing mother—and how she retook control of her life.\n\nJennette McCurdy was six years old when she had her first acting audition. Her mother’s dream was for her only daughter to become a star, and Jennette would do anything to make her mother happy. So she went along with what Mom called “calorie restriction,” eating little and weighing herself five times a day. She endured extensive at-home makeovers while Mom chided, “Your eyelashes are invisible, okay? You think Dakota Fanning doesn’t tint hers?” She was even showered by Mom until age sixteen while sharing her diaries, email, and all her income.",
+		price: 161,
+		offer: 2,
 		bookPDFURL:
-			"https://www.goodreads.com/book/show/59366244-i-m-glad-my-mom-died",
+		"https://www.goodreads.com/book/show/59366244-i-m-glad-my-mom-died",
 	},
 	{
 		_id: "651a535346a92da798190301",
@@ -102,8 +113,9 @@ const FakeDataBooks = [
 		category: "Fiction",
 		bookDescription:
 			"To inherit billions, all Avery Kylie Grambs has to do is survive a few more weeks living in Hawthorne House. The paparazzi are dogging her every step. Financial pressures are building. Danger is a fact of life. And the only thing getting Avery through it all is the Hawthorne brothers. Her life is intertwined with theirs. She knows their secrets and they know her.",
+		price: 465,
 		bookPDFURL:
-			"https://www.goodreads.com/book/show/59233594-the-final-gambit",
+		"https://www.goodreads.com/book/show/59233594-the-final-gambit",
 	},
 	{
 		_id: "651a53a046a92da798190302",
@@ -114,8 +126,9 @@ const FakeDataBooks = [
 		category: "Biography",
 		bookDescription:
 			"Brunhild was a Spanish princess, raised to be married off for the sake of alliance-building. Her sister-in-law Fredegund started out as a lowly palace slave. And yet—in the 6th-century Merovingian Empire, where women were excluded from noble succession and royal politics was a blood sport—these two iron-willed strategists reigned over vast realms for decades, changing the face of Europe.",
+		price: 522,
 		bookPDFURL:
-			"https://www.goodreads.com/book/show/53138220-the-dark-queens",
+		"https://www.goodreads.com/book/show/53138220-the-dark-queens",
 	},
 ];
 export default FakeDataBooks;

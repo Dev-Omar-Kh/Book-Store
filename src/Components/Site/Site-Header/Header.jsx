@@ -33,7 +33,7 @@ export default function Header({height}) {
                 const headerHeight = headerCont.offsetHeight;
 
                 setContainerHeight(headerHeight - topHeaderHeight);
-                height(headerHeight)
+                height(headerHeight);
 
                 if (navBar) {
 
@@ -97,9 +97,10 @@ export default function Header({height}) {
         const handleHeaderTop = () => {
 
             const scrollY = window.scrollY;
-            setTopHeaderHeight(topHeader.offsetHeight + 2);
 
             if(scrollY > scrollValueY){
+
+                setTopHeaderHeight(topHeader.offsetHeight + 2);
 
                 headerCont.style.top = - topHeaderHeight + 'px';
 

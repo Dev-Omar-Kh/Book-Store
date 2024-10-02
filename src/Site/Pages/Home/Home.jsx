@@ -5,6 +5,7 @@ import Sponsors from './Sponsors/Sponsors';
 import Featured from './Featured-Books/Featured';
 import BestProduct from './Best-Product/BestProduct';
 import Popular from './Popular-Books/Popular';
+import Offers from './Latest-Offers/Offers';
 
 export default function Home() {
 
@@ -21,6 +22,8 @@ export default function Home() {
         <BestProduct />
 
         <Popular />
+
+        <Offers />
 
     </React.Fragment>
 
