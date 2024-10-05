@@ -1,12 +1,25 @@
 import React from 'react';
 import FakeDataBooks from './../../../../FakeDataBooks';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+import { IoMdArrowRoundForward } from 'react-icons/io';
 
 import commonCSS from '../../../../Styles/home_common.module.css';
 import Products from '../../../../Components/Site/Products/Products';
-import { IoMdArrowRoundForward } from 'react-icons/io';
+import Titles from '../Titles-Home/Titles';
 
 export default function Featured() {
+
+    // ====== framer-motion ====== //
+
+    const linkVariants = {
+
+        hidden: {opacity: 0 , y: 40},
+        visible: {opacity: 1 , y: 0 , transition: {duration: 0.3}},
+        exit: {opacity: 0 , y: 40 , transition: {duration: 0.3}}
+
+    }
 
     // ====== send-books-data ====== //
 
@@ -16,26 +29,22 @@ export default function Featured() {
 
         <div className={commonCSS.container}>
 
-            <div className={commonCSS.title}>
-
-                <span className={commonCSS.line}></span>
-
-                <h3>Featured Books</h3>
-
-                <span className={commonCSS.line}></span>
-
-            </div>
+            <Titles title={'Featured Books'} />
 
             <Products data={featuredBooks} />
 
-            <div className={commonCSS.link}>
+            <motion.div
+                variants={linkVariants}
+                initial='hidden' whileInView={'visible'} viewport={{once: true , amount: 1}}
+                className={commonCSS.link}
+            >
 
                 <Link>
                     <p>View all books</p>
                     <IoMdArrowRoundForward />
                 </Link>
 
-            </div>
+            </motion.div>
 
         </div>
 

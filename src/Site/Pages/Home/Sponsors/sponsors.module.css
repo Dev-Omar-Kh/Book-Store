@@ -17,12 +17,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: transform, opacity;
 
 }
 
 .sponsors_card img{
 
     width: 80%;
+
+}
+
+.placeholder{
+
+    width: 80%;
+    height: 200px;
 
 }
 

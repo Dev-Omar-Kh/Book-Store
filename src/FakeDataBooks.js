@@ -131,4 +131,5 @@ const FakeDataBooks = [
 		"https://www.goodreads.com/book/show/53138220-the-dark-queens",
 	},
 ];
+
 export default FakeDataBooks;

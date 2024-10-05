@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { IoArrowBackSharp, IoArrowForwardSharp } from 'react-icons/io5';
 
@@ -12,24 +12,26 @@ export default function Slider({height}) {
 
     // ====== fake-data-books ====== //
 
-    const books = FakeDataBooks.slice(0 , 6);
+    const books = useMemo(() => FakeDataBooks.slice(0, 6), []);
 
-    const [currentBookID, setCurrentBookID] = useState(0);
+    const [currentBook, setCurrentBook] = useState(books[0]);
 
-    const handleNextBook = () => {
+    const handleNextBook = useCallback(() => {
 
-        setCurrentBookID(currentId => currentId === books.length - 1 ? 0 : currentId + 1);
+        const nextId = (books.indexOf(currentBook) + 1) % books.length;
+        setCurrentBook(books[nextId]);
 
-    }
+    } , [books, currentBook]);
 
-    const handlePrevBook = () => {
+    const handlePrevBook = useCallback(() => {
 
-        setCurrentBookID(prevId => prevId === 0 ? books.length - 1 : prevId - 1);
+        const prevId = (books.indexOf(currentBook) - 1 + books.length) % books.length;
+        setCurrentBook(books[prevId]);
 
-    }
+    } , [books, currentBook]);
 
     useEffect(() => {
-        
+
         books.forEach(book => {
 
             const img = new Image();
@@ -37,13 +39,11 @@ export default function Slider({height}) {
 
         });
 
-        const interval = setInterval(() => {
-            setCurrentBookID(currentId => currentId === books.length - 1 ? 0 : currentId + 1);
-        }, 8000);
+        const interval = setInterval(handleNextBook, 8000);
 
         return () => clearInterval(interval);
 
-    }, [books]);
+    }, [books , handleNextBook]);
 
     // ====== container-height ====== //
 
@@ -91,21 +91,21 @@ export default function Slider({height}) {
                 <IoArrowBackSharp />
             </motion.div>
 
-            <AnimatePresence>
+            <div className={sliderCSS.slider_cont}>
 
-                <div className={sliderCSS.slider_cont}>
+                <AnimatePresence mode="wait">
 
                     <motion.div 
-                        key={currentBookID}
+                        key={currentBook._id}
                         variants={parentVariants} initial='hidden' animate='visible' exit={'exit'}  
                         className={sliderCSS.slider_box}
                     >
 
                         <motion.div variants={toBottomVariants} className={sliderCSS.box_content}>
 
-                            <h3>{books[currentBookID].bookTitle}</h3>
+                            <h3>{currentBook.bookTitle}</h3>
 
-                            <p>{books[currentBookID].bookDescription}</p>
+                            <p>{currentBook.bookDescription}</p>
 
                             <Link>
                                 Show more
@@ -116,15 +116,15 @@ export default function Slider({height}) {
 
                         <motion.div variants={toTopVariants} className={sliderCSS.box_img}>
 
-                            <img src={books[currentBookID].imageURL} alt="" />
+                            <img src={currentBook.imageURL} alt={currentBook.bookTitle} />
 
                         </motion.div>
 
                     </motion.div>
 
-                </div>
+                </AnimatePresence>
 
-            </AnimatePresence>
+            </div>
 
             <motion.div onClick={handleNextBook} whileTap={{scale : 0.90}} className={sliderCSS.arrow}>
                 <IoArrowForwardSharp />

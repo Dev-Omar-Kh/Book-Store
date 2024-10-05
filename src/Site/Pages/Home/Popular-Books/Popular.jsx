@@ -6,6 +6,9 @@ import FakeDataBooks from '../../../../FakeDataBooks';
 import Products from '../../../../Components/Site/Products/Products';
 import { IoMdArrowRoundForward } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import Titles from '../Titles-Home/Titles';
+import { motion } from 'framer-motion';
+
 
 export default function Popular() {
 
@@ -31,21 +34,35 @@ export default function Popular() {
 
     } , [category]);
 
+    // ====== framer-motion ====== //
+
+    const linkVariants = {
+
+        hidden: {opacity: 0 , y: 40},
+        visible: {opacity: 1 , y: 0 , transition: {duration: 0.3}},
+        exit: {opacity: 0 , y: 40 , transition: {duration: 0.3}}
+
+    }
+
+    const cateVariants = {
+
+        hidden: {opacity: 0 , scale: 0.95},
+        visible: {opacity: 1 , scale: 1 , transition: {duration: 0.3}},
+        exit: {opacity: 0 , scale: 0.95, transition: {duration: 0.3}}
+
+    }
+
     return <React.Fragment>
 
         <div className={commonCSS.container}>
 
-            <div className={commonCSS.title}>
+            <Titles title={'Popular Books'} />
 
-                <span className={commonCSS.line}></span>
-
-                <h3>Popular Books</h3>
-
-                <span className={commonCSS.line}></span>
-
-            </div>
-
-            <div className={popularCSS.categories_cont}>
+            <motion.div 
+                variants={cateVariants} 
+                initial='hidden' whileInView={'visible'} viewport={{once: true , amount: 0.5}}
+                className={popularCSS.categories_cont}
+            >
 
                 <div className={popularCSS.cate_box}>
 
@@ -68,18 +85,22 @@ export default function Popular() {
 
                 </div>
 
-            </div>
+            </motion.div>
 
-            <Products data={booksData} />
+            <Products category={category} data={booksData} />
 
-            {booksData.length > 5 ? <div className={commonCSS.link}>
+            {booksData.length > 5 && <motion.div
+                variants={linkVariants}
+                initial='hidden' whileInView={'visible'} viewport={{once: true , amount: 1}}
+                className={commonCSS.link}
+            >
 
                 <Link>
                     <p>View more books</p>
                     <IoMdArrowRoundForward />
                 </Link>
 
-            </div> : ''}
+            </motion.div>}
 
         </div>
 
