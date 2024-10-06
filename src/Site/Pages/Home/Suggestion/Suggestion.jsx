@@ -1,35 +1,67 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
-import commonCSS from '../../../../Styles/home_common.module.css'
-import { Link } from 'react-router-dom';
-import { IoMdArrowRoundForward } from 'react-icons/io';
+import { BsFillSendFill } from 'react-icons/bs';
+
+import suggestionCSS from './suggestion.module.css';
 
 export default function Suggestion() {
 
+    // ====== framer-motion ====== //
+
+    const parentVariants = {
+
+        hidden : {opacity: 0},
+        visible: {opacity : 1 , transition: {duration: 0.3 , when: 'beforeChildren' , staggerChildren : 0.1}}
+
+    }
+
+    const toBottomVariants = {
+
+        hidden : {opacity: 0 , y: -20},
+        visible : {opacity: 1 , y: 0 , transition: {duration : 0.3}} ,
+
+    }
+
+    const toTopVariants = {
+
+        hidden : {opacity: 0 , y: 20},
+        visible : {opacity: 1 , y: 0 , transition: {duration : 0.3}} ,
+
+    }
+
     return <React.Fragment>
 
-        <div className={commonCSS.container}>
+        <motion.div 
+            variants={parentVariants} 
+            initial='hidden' whileInView='visible' viewport={{once: true , amount: 0.3}}
+            className={suggestionCSS.container}
+        >
 
-            <div className={commonCSS.title}>
+            <motion.div variants={toTopVariants} className={suggestionCSS.title}>
 
-                <span className={commonCSS.line}></span>
+                <p>Book</p>
+                <span></span>
+                <p>Suggestions</p>
 
-                <h3>Most Articles</h3>
+            </motion.div>
 
-                <span className={commonCSS.line}></span>
+            <motion.div variants={toBottomVariants} className={suggestionCSS.form}>
 
-            </div>
+                <p>Let us know about any book you'd like to have on the site, and we'll do our best to meet your request.</p>
+                <p>Keep an eye on your email to see the results of your suggestions, or you can follow the newsletter on the website.</p>
 
-            <div className={commonCSS.link}>
+                <div className={suggestionCSS.form_card}>
 
-                <Link>
-                    <p>View more articles</p>
-                    <IoMdArrowRoundForward />
-                </Link>
+                    <input type="text" placeholder='Enter the name of the book' />
 
-            </div>
+                    <button type="submit"> <BsFillSendFill /> </button>
 
-        </div>
+                </div>
+
+            </motion.div>
+
+        </motion.div>
 
     </React.Fragment>
 

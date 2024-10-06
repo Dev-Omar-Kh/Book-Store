@@ -6,7 +6,7 @@ import { IoCartOutline, IoHeartOutline } from 'react-icons/io5';
 import productsCSS from '../../../Styles/products.module.css';
 import { AnimatePresence , motion } from 'framer-motion';
 
-export default function Products({data , category}) {
+const Products = React.memo(function Products({ data, category }) {
 
     // ====== framer-motion ====== //
 
@@ -32,7 +32,7 @@ export default function Products({data , category}) {
 
             <motion.div 
                 variants={parentVariants} 
-                key={category}
+                key={category ?  category : 'container'}
                 initial='hidden' whileInView='visible' exit='exit' viewport={{ once: true, amount: 0.01 }} 
                 className={productsCSS.container}
             >
@@ -50,7 +50,7 @@ export default function Products({data , category}) {
                         
                             <div className={productsCSS.pro_img}>
 
-                                <img className={productsCSS.pro_img_img} src={book.imageURL} alt={book.bookTitle} />
+                                <img className={productsCSS.pro_img_img} src={book.imageURL} alt={book.bookTitle} loading='lazy' />
 
                             </div>
 
@@ -89,4 +89,6 @@ export default function Products({data , category}) {
 
     </React.Fragment>
 
-}
+});
+
+export default Products

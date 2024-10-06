@@ -62,24 +62,24 @@ export default function Slider({height}) {
     const parentVariants = {
 
         hidden : {opacity: 0},
-        visible: {opacity : 1 , transition: {duration: 0.6}},
-        exit : {opacity: 0 , transition: {duration : 0.6}}
+        visible: {opacity : 1 , transition: {duration: 0.3}},
+        exit : {opacity: 0 , transition: {duration : 0.3}}
 
     };
 
     const toBottomVariants = {
 
         hidden : {opacity: 0 , y: -40},
-        visible : {opacity: 1 , y: 0 , transition: {duration : 0.6}} ,
-        exit : {opacity: 0 , y: -40 , transition: {duration : 0.6}}
+        visible : {opacity: 1 , y: 0 , transition: {duration : 0.3}} ,
+        exit : {opacity: 0 , y: -40 , transition: {duration : 0.3}}
 
     }
 
     const toTopVariants = {
 
         hidden : {opacity: 0 , y: 40},
-        visible : {opacity: 1 , y: 0 , transition: {duration : 0.6}} ,
-        exit : {opacity: 0 , y: 40 , transition: {duration : 0.6}}
+        visible : {opacity: 1 , y: 0 , transition: {duration : 0.3}} ,
+        exit : {opacity: 0 , y: 40 , transition: {duration : 0.3}}
 
     }
 

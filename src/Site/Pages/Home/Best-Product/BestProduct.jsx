@@ -1,26 +1,57 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import FakeDataBooks from './../../../../FakeDataBooks';
+
+import { IoMdArrowRoundForward } from 'react-icons/io';
 
 import bestProCSS from './best_pro.module.css';
-import { Link } from 'react-router-dom';
-import { IoMdArrowRoundForward } from 'react-icons/io';
-import FakeDataBooks from './../../../../FakeDataBooks';
 
 export default function BestProduct() {
 
+    // ====== best-book-data ====== //
+
     const bestBook = FakeDataBooks.slice(2 , 3);
-    const data = bestBook[0]
+    const data = bestBook[0];
+
+    // ====== framer-motion ====== //
+
+    const parentVariants = {
+
+        hidden : {opacity: 0},
+        visible: {opacity : 1 , transition: {duration: 0.3 , when: 'beforeChildren' , staggerChildren : 0.1}}
+
+    }
+
+    const toBottomVariants = {
+
+        hidden : {opacity: 0 , y: -20},
+        visible : {opacity: 1 , y: 0 , transition: {duration : 0.3}} ,
+
+    }
+
+    const toTopVariants = {
+
+        hidden : {opacity: 0 , y: 20},
+        visible : {opacity: 1 , y: 0 , transition: {duration : 0.3}} ,
+
+    }
 
     return <React.Fragment>
 
-        <div className={bestProCSS.container}>
+        <motion.div 
+            variants={parentVariants} 
+            initial='hidden' whileInView='visible' viewport={{once: true , amount: 0.3}}
+            className={bestProCSS.container}
+        >
 
-            <div className={bestProCSS.img_cont}>
+            <motion.div variants={toTopVariants} className={bestProCSS.img_cont}>
 
                 <img src={data.imageURL} alt="" />
 
-            </div>
+            </motion.div>
 
-            <div className={bestProCSS.det_cont}>
+            <motion.div variants={toBottomVariants} className={bestProCSS.det_cont}>
 
                 <h3>Best Selling Book</h3>
 
@@ -37,9 +68,9 @@ export default function BestProduct() {
                     <IoMdArrowRoundForward />
                 </Link>
 
-            </div>
+            </motion.div>
 
-        </div>
+        </motion.div>
 
     </React.Fragment>
 
