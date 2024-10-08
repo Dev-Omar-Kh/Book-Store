@@ -39,7 +39,7 @@ export default function Featured() {
                 className={commonCSS.link}
             >
 
-                <Link>
+                <Link to={'/books'}>
                     <p>View all books</p>
                     <IoMdArrowRoundForward />
                 </Link>

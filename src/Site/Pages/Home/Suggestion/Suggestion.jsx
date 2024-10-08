@@ -35,7 +35,7 @@ export default function Suggestion() {
         <motion.div 
             variants={parentVariants} 
             initial='hidden' whileInView='visible' viewport={{once: true , amount: 0.3}}
-            className={suggestionCSS.container}
+            className={suggestionCSS.container} id='suggestion'
         >
 
             <motion.div variants={toTopVariants} className={suggestionCSS.title}>

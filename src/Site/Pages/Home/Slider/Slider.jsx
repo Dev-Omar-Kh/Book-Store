@@ -107,7 +107,7 @@ export default function Slider({height}) {
 
                             <p>{currentBook.bookDescription}</p>
 
-                            <Link>
+                            <Link to={'/books'}>
                                 Show more
                                 <IoIosArrowForward />
                             </Link>

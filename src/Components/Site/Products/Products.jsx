@@ -46,7 +46,7 @@ const Products = React.memo(function Products({ data, category }) {
 
                         </div>
 
-                        <Link>
+                        <Link to={`/single_book/${book._id}`}>
                         
                             <div className={productsCSS.pro_img}>
 

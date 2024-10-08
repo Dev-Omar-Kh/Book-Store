@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import commonCSS from '../../../../Styles/home_common.module.css';
-import popularCSS from './popular.module.css';
-import FakeDataBooks from '../../../../FakeDataBooks';
-import Products from '../../../../Components/Site/Products/Products';
-import { IoMdArrowRoundForward } from 'react-icons/io';
-import { Link } from 'react-router-dom';
-import Titles from '../Titles-Home/Titles';
+import commonCSS from '../../../Styles/home_common.module.css';
+import FakeDataBooks from '../../../FakeDataBooks';
+import Products from '../../../Components/Site/Products/Products';
 import { motion } from 'framer-motion';
 
-
-export default function Popular() {
+export default function Books() {
 
     // ====== get-categories ====== //
 
@@ -34,16 +29,6 @@ export default function Popular() {
 
     } , [category]);
 
-    // ====== framer-motion ====== //
-
-    const linkVariants = {
-
-        hidden: {opacity: 0 , y: 40},
-        visible: {opacity: 1 , y: 0 , transition: {duration: 0.3}},
-        exit: {opacity: 0 , y: 40 , transition: {duration: 0.3}}
-
-    }
-
     const cateVariants = {
 
         hidden: {opacity: 0 , scale: 0.95},
@@ -56,19 +41,17 @@ export default function Popular() {
 
         <div className={commonCSS.container}>
 
-            <Titles title={'Popular Books'} />
-
             <motion.div 
                 variants={cateVariants} 
                 initial='hidden' whileInView={'visible'} viewport={{once: true , amount: 0.5}}
-                className={popularCSS.categories_cont}
+                className={commonCSS.categories_cont}
             >
 
-                <div className={popularCSS.cate_box}>
+                <div className={commonCSS.cate_box}>
 
                     <button 
                         onClick={() => setCategory(null)} 
-                        className={`${popularCSS.cate} ${category === null ? popularCSS.active : ''}`}
+                        className={`${commonCSS.cate} ${category === null ? commonCSS.active : ''}`}
                     >
                         All Books
                     </button>
@@ -77,7 +60,7 @@ export default function Popular() {
                         return <button 
                             key={idx}
                             onClick={() => setCategory(cate)} 
-                            className={`${popularCSS.cate} ${cate === category ? popularCSS.active : ''}`}
+                            className={`${commonCSS.cate} ${cate === category ? commonCSS.active : ''}`}
                         >
                             {cate}
                         </button>
@@ -88,19 +71,6 @@ export default function Popular() {
             </motion.div>
 
             <Products category={category} data={booksData} />
-
-            {booksData.length > 5 && <motion.div
-                variants={linkVariants}
-                initial='hidden' whileInView={'visible'} viewport={{once: true , amount: 1}}
-                className={commonCSS.link}
-            >
-
-                <Link to={'/books'}>
-                    <p>View more books</p>
-                    <IoMdArrowRoundForward />
-                </Link>
-
-            </motion.div>}
 
         </div>
 

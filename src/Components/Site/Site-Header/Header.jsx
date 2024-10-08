@@ -174,12 +174,12 @@ export default function Header({height}) {
 
                 <div className={headerCSS.user_info}>
 
-                    <div className={headerCSS.user_info_box}>
+                    <Link to={'/register'} className={headerCSS.user_info_box}>
 
                         <FaRegUser className={headerCSS.info_icon} />
                         <p>Account</p>
 
-                    </div>
+                    </Link>
 
                     <div className={headerCSS.user_info_box}>
 
@@ -224,7 +224,7 @@ export default function Header({height}) {
                             <li>Home</li>
                         </NavLink>
 
-                        <NavLink to={'/allBooks'} className={'site_header'}>
+                        <NavLink to={'/books'} className={'site_header'}>
                             <PiBooksFill />
                             <li>Books</li>
                         </NavLink>
@@ -234,9 +234,9 @@ export default function Header({height}) {
                             <li>Offers</li>
                         </NavLink>
 
-                        <NavLink to={'/blogs'} className={'site_header'}>
+                        <NavLink to={'/newsletter'} className={'site_header'}>
                             <GrArticle />
-                            <li>Blogs</li>
+                            <li>Newsletter</li>
                         </NavLink>
 
                         <NavLink to={'/suggestBook'} className={'site_header'}>

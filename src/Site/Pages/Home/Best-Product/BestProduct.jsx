@@ -63,7 +63,7 @@ export default function BestProduct() {
 
                 <p className={bestProCSS.book_price}>{10000} <span>EGP</span></p>
 
-                <Link className={bestProCSS.action}>
+                <Link to={`/single_book/${data._id}`} className={bestProCSS.action}>
                     <p>View book details</p>
                     <IoMdArrowRoundForward />
                 </Link>

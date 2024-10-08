@@ -7,7 +7,6 @@ import BestProduct from './Best-Product/BestProduct';
 import Popular from './Popular-Books/Popular';
 import Offers from './Latest-Offers/Offers';
 import Suggestion from './Suggestion/Suggestion';
-import Footer from '../../../Components/Site/Site-Footer/Footer';
 
 export default function Home() {
 
@@ -28,8 +27,6 @@ export default function Home() {
         <Offers />
 
         <Suggestion />
-
-        <Footer />
 
     </React.Fragment>
 
