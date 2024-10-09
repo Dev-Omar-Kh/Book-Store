@@ -9,8 +9,13 @@ import Books from './Site/Pages/Books/Books';
 import SuggestionPage from './Site/Pages/Suggestion-Page/SuggestionPage';
 import Newsletter from './Site/Pages/Newsletter/Newsletter';
 import NewsMessages from './Site/Pages/Newsletter/NewsMessages';
+import AdminLayout from './Layouts/Admin-Layout/AdminLayout';
+import AllUsers from './Admin/Pages/Users/AllUsers';
+import Empty from './Components/Admin/Empty/Empty';
 
 const routes = createBrowserRouter([
+
+    // ====== site-routes ====== //
 
     {path : '/' , element : <SiteLayout /> , children : [
 
@@ -21,6 +26,8 @@ const routes = createBrowserRouter([
 
     ]},
 
+    // ====== newsletter-routes ====== //
+
     {path : '/newsletter' , element : <Newsletter /> , children: [
 
         {path : '/newsletter', element : <NewsMessages noData={true} />},
@@ -28,8 +35,19 @@ const routes = createBrowserRouter([
 
     ]},
 
+    // ====== authentication-routes ====== //
+
     {path: '/register' , element : <Register />},
     {path: '/login' , element : <Login />},
+
+    // ====== admin-routes ====== //
+
+    {path: '/admin' , element : <AdminLayout /> , children: [
+
+        {path: '/admin' , element: <Empty />},
+        {path: 'users' , element: <AllUsers />},
+
+    ]}
 
 ]);
 

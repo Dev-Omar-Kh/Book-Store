@@ -12,6 +12,7 @@
 
 :root{
 
+    --error-color: red;
     --first-color: #F3F2EC;
     --seconde-color: #C5A992;
     --third-color: #2f2f2f;
