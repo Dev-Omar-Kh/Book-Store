@@ -1,15 +1,16 @@
-import React from 'react'
-import FakeUsers from './Users'
-import { Link } from 'react-router-dom';
+import React from 'react';
+import Suggestions from './Suggestions';
 
-import { BiErrorAlt } from 'react-icons/bi'
-import { FaUsersViewfinder } from 'react-icons/fa6'
+import { MdOutlineMessage } from 'react-icons/md';
+import { BiErrorAlt } from 'react-icons/bi';
 import { IoBanSharp } from 'react-icons/io5';
 
 import titlesCSS from '../../../Styles/db_title.module.css';
 import tableCSS from '../../../Styles/db_tables.module.css';
 
-export default function AllUsers() {
+export default function Suggestion() {
+
+    const suggestion = Suggestions
 
     return <React.Fragment>
 
@@ -19,14 +20,8 @@ export default function AllUsers() {
 
                 <div className={titlesCSS.title_box}>
 
-                    <FaUsersViewfinder />
-                    <p>Users</p>
-
-                </div>
-
-                <div className={titlesCSS.actions}>
-
-                    <Link to={'add'}>Add Admin</Link>
+                    <MdOutlineMessage />
+                    <p>Suggestions</p>
 
                 </div>
 
@@ -34,18 +29,17 @@ export default function AllUsers() {
 
             <div className={tableCSS.table_cont}>
 
-                {FakeUsers.length > 0 ?
+                {suggestion.length > 0 ? 
                     <table className={tableCSS.table}>
 
                         <thead>
 
                             <tr>
 
-                                <th>User Name</th>
-                                <th>User Email</th>
-                                <th>User Phone</th>
-                                <th>User Role</th>
-                                <th>User Ban</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Suggestion</th>
+                                <th>Action</th>
 
                             </tr>
 
@@ -53,19 +47,18 @@ export default function AllUsers() {
 
                         <tbody>
 
-                            {FakeUsers.map(user => <tr key={user.id}>
+                            {suggestion.map(sug => <tr key={sug._id}>
 
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.phone}</td>
-                                <td>{user.role}</td>
+                                <td>{sug.name}</td>
+                                <td>{sug.email}</td>
+                                <td>{sug.suggestion}</td>
                                 <td>
                                     <button 
-                                        // onClick={() => firstDeleteStep(user)}
+                                        // onClick={() => firstDeleteStep(sug)}
                                         className={`${tableCSS.actions} ${tableCSS.delete}`}
                                     >
                                         <IoBanSharp className={tableCSS.action_icon} />
-                                        Ban
+                                        Delete
                                     </button>
                                 </td>
 
@@ -73,11 +66,11 @@ export default function AllUsers() {
 
                         </tbody>
 
-                    </table> :
+                    </table> : 
                     <div className={tableCSS.empty_doc}>
 
                         <BiErrorAlt />
-                        <h3>No Users Data</h3>
+                        <h3>No Suggestions Data</h3>
 
                     </div>
                 }

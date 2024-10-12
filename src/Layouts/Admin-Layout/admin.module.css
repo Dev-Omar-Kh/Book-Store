@@ -42,9 +42,10 @@
 
     width: 100%;
     height: calc(100vh - 60px);
+    padding: 20px 2.25%;
     border-radius: 5px;
     background-color: var(--first-color);
-    overflow: auto;
+    overflow: hidden;
 
 }
 
@@ -106,7 +107,7 @@
         height: 100vh;
         background-color: var(--dark-opacity);
         transition: 0.3s;
-        z-index: 0;
+        z-index: 100;
         visibility: hidden;
         opacity: 0;
 

@@ -12,6 +12,13 @@ import NewsMessages from './Site/Pages/Newsletter/NewsMessages';
 import AdminLayout from './Layouts/Admin-Layout/AdminLayout';
 import AllUsers from './Admin/Pages/Users/AllUsers';
 import Empty from './Components/Admin/Empty/Empty';
+import BooksList from './Admin/Pages/Books/BooksList';
+import AddBook from './Admin/Pages/Books/AddBook';
+import AddAdmin from './Admin/Pages/Users/AddAdmin';
+import NewsList from './Admin/Pages/News/NewsList';
+import AddNews from './Admin/Pages/News/AddNews';
+import Suggestion from './Admin/Pages/Suggestion/Suggestion';
+import Orders from './Admin/Pages/Orders/Orders';
 
 const routes = createBrowserRouter([
 
@@ -45,7 +52,19 @@ const routes = createBrowserRouter([
     {path: '/admin' , element : <AdminLayout /> , children: [
 
         {path: '/admin' , element: <Empty />},
+        
         {path: 'users' , element: <AllUsers />},
+        {path: 'users/add' , element: <AddAdmin />},
+
+        {path: 'books' , element: <BooksList />},
+        {path: 'books/add' , element: <AddBook />},
+
+        {path: 'news' , element: <NewsList />},
+        {path: 'news/add' , element: <AddNews />},
+
+        {path: 'orders' , element: <Orders />},
+
+        {path: 'suggestion' , element: <Suggestion />},
 
     ]}
 

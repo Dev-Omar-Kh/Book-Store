@@ -35,7 +35,7 @@ export default function NewsMessages({noData}) {
 
         }
 
-    } , [id , news])
+    } , [id , news]);
 
     // ====== framer-motion ====== //
 

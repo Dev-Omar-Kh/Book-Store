@@ -7,7 +7,6 @@ import sideCSS from './sidebar.module.css';
 import './active.css'
 import { PiBooksFill } from 'react-icons/pi';
 import { GrArticle } from 'react-icons/gr';
-import { BiSolidOffer } from 'react-icons/bi';
 import { MdOutlineMessage, MdOutlineShoppingBag } from 'react-icons/md';
 
 export default function SideBar({display}) {
@@ -32,11 +31,6 @@ export default function SideBar({display}) {
                     <NavLink to={'books'} onClick={() => display(false)} className='side_bar_links'>
                         <PiBooksFill className={sideCSS.side_bar_icon} />
                         <li>Books</li>
-                    </NavLink>
-
-                    <NavLink to={'offers'} onClick={() => display(false)} className='side_bar_links'>
-                        <BiSolidOffer className={sideCSS.side_bar_icon} />
-                        <li>Offers</li>
                     </NavLink>
 
                     <NavLink to={'news'} onClick={() => display(false)} className='side_bar_links'>
