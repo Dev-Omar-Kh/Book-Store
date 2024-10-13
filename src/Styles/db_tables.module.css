@@ -96,17 +96,23 @@
     cursor: pointer;
 
 }
-/* 
-.action_icon {
-
-    font-size: 18px;
-
-} */
 
 .delete {
 
     color: var(--error-color);
     border-color: var(--error-color);
+
+}
+
+.update{
+
+    border-color: var(--active-color);
+
+}
+
+.action_icon {
+
+    color: var(--active-color);
 
 }
 

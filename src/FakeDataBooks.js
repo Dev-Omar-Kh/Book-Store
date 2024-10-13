@@ -44,7 +44,7 @@ const FakeDataBooks = [
 		authorName: "Emily Henry",
 		imageURL:
 			"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1638867089i/58690308.jpg",
-		category: "Fiction",
+		category: "Emily Henry",
 		bookDescription:
 			"Nora Stephens’ life is books—she’s read them all—and she is not that type of heroine. Not the plucky one, not the laidback dream girl, and especially not the sweetheart. In fact, the only people Nora is a heroine for are her clients, for whom she lands enormous deals as a cutthroat literary agent, and her beloved little sister Libby.",
 		price: 489,

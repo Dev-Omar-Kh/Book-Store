@@ -19,6 +19,8 @@ import NewsList from './Admin/Pages/News/NewsList';
 import AddNews from './Admin/Pages/News/AddNews';
 import Suggestion from './Admin/Pages/Suggestion/Suggestion';
 import Orders from './Admin/Pages/Orders/Orders';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import UpdateBook from './Admin/Pages/Books/UpdateBook';
 
 const routes = createBrowserRouter([
 
@@ -54,10 +56,11 @@ const routes = createBrowserRouter([
         {path: '/admin' , element: <Empty />},
         
         {path: 'users' , element: <AllUsers />},
-        {path: 'users/add' , element: <AddAdmin />},
+        {path: 'users/update/:id' , element: <AddAdmin />},
 
         {path: 'books' , element: <BooksList />},
         {path: 'books/add' , element: <AddBook />},
+        {path: 'books/update/:id' , element: <UpdateBook />},
 
         {path: 'news' , element: <NewsList />},
         {path: 'news/add' , element: <AddNews />},
@@ -72,9 +75,15 @@ const routes = createBrowserRouter([
 
 export default function App() {
 
+    let clientQuery = new QueryClient();
+
     return <React.Fragment>
 
-        <RouterProvider router={routes} />
+        <QueryClientProvider client={clientQuery}>
+
+            <RouterProvider router={routes} />
+
+        </QueryClientProvider>
 
     </React.Fragment>
 

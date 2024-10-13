@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { LuImagePlus } from 'react-icons/lu';
@@ -9,11 +9,26 @@ import titleCSS from '../../../Styles/db_title.module.css';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
-import { Axios, BookAdd } from '../../../API/Api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Axios,  BookGetSingle, BookUpdate } from '../../../API/Api';
 import Status from '../../../Components/Common/Status/Status';
+import { useQuery } from 'react-query';
 
-export default function AddBook() {
+export default function UpdateBook() {
+
+    // ====== get-old-data ====== //
+
+    const {id} = useParams();
+
+    const getSingleBook = async() => {
+
+        return await Axios.get(`${BookGetSingle}/${id}`);
+
+    }
+
+    const {data , isLoading} = useQuery('getSingleBookById' , getSingleBook);
+
+    const bookData = data?.data.data;
 
     // ====== send-book-data ====== //
 
@@ -22,22 +37,30 @@ export default function AddBook() {
     const [loading, setLoading] = useState(false)
     const [successMsg, setSuccessMsg] = useState(null);
 
-    const [previewImage, setPreviewImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState( null);
     const [uploading, setUploading] = useState(false);
     
     const navigate = useNavigate();
 
     const token = localStorage.getItem('token');
 
+    useEffect(() => {
+
+        if (bookData && bookData.image) {
+            setPreviewImage(bookData.image);
+        }
+        
+    }, [bookData]);
+
     const values = {
 
-        title:'',
-        author:'',
-        category:'',
-        description:'',
-        price: '',
-        offer:'',
-        image:''
+        title: bookData?.title || '',
+        author: bookData?.author || '',
+        category: bookData?.category || '',
+        description: bookData?.description || '',
+        price: bookData?.price || '',
+        offer: bookData?.offer || '',
+        image: bookData?.image || '',
 
     }
 
@@ -49,7 +72,7 @@ export default function AddBook() {
 
         try {
 
-            const {data} = await Axios.post(`${BookAdd}` , values , {
+            const {data} = await Axios.patch(`${BookUpdate}/${id}` , values , {
                 headers: {
                     token
                 }
@@ -78,6 +101,8 @@ export default function AddBook() {
         initialValues: values,
 
         onSubmit: addBookData,
+
+        enableReinitialize: true,
 
         validate: (values) => {
 
@@ -235,7 +260,7 @@ export default function AddBook() {
                         </label>
                         <input 
                             id='title' 
-                            type="text" placeholder='Enter the book name' 
+                            type="text" placeholder={isLoading ? 'Loading' : 'Enter the book name'} 
                             onBlur={formikObj.handleBlur}
                             style={formikObj.touched.title && formikObj.errors.title ?
                                 {borderColor : 'var(--error-color)'} : {}
@@ -259,7 +284,7 @@ export default function AddBook() {
                         </label>
                         <input 
                             id='author' 
-                            type="text" placeholder="Enter the book's author name" 
+                            type="text" placeholder={isLoading ? 'Loading' : "Enter the book's author name"} 
                             onBlur={formikObj.handleBlur}
                             style={formikObj.touched.author && formikObj.errors.author ?
                                 {borderColor : 'var(--error-color)'} : {}
@@ -283,7 +308,7 @@ export default function AddBook() {
                         </label>
                         <input 
                             id='category' 
-                            type="text" placeholder="Enter the book's category" 
+                            type="text" placeholder={isLoading ? 'Loading...' : "Enter the book's category" }
                             onBlur={formikObj.handleBlur}
                             style={formikObj.touched.category && formikObj.errors.category ?
                                 {borderColor : 'var(--error-color)'} : {}
@@ -307,7 +332,7 @@ export default function AddBook() {
                         </label>
                         <input 
                             id='price' 
-                            type="text" placeholder="Enter the book's price" 
+                            type="text" placeholder={isLoading ? 'Loading...' : "Enter the book's price" }
                             onBlur={formikObj.handleBlur}
                             style={formikObj.touched.price && formikObj.errors.price ?
                                 {borderColor : 'var(--error-color)'} : {}
@@ -328,7 +353,7 @@ export default function AddBook() {
                         </label>
                         <input 
                             id='offer'
-                            type="text" placeholder="Enter the book's offer" 
+                            type="text" placeholder={isLoading ? 'Loading...' : "Enter the book's offer" }
                             onChange={formikObj.handleChange}
                             value={formikObj.values.offer}
                             disabled={loading}
@@ -345,7 +370,7 @@ export default function AddBook() {
                             }
                         </label>
                         <textarea 
-                            id="description" placeholder="Enter the book's description"
+                            id="description" placeholder={isLoading ? 'Loading...' : "Enter the book's description"}
                             onChange={formikObj.handleChange}
                             value={formikObj.values.description}
                             disabled={loading}
