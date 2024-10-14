@@ -23,11 +23,11 @@ export default function AllUsers() {
 
     const getAllUsers = async() => {
 
-        return await Axios.get(`${GetUsers}` , {headers: {token}})
+        return await Axios.get(`${GetUsers}`, { withCredentials: true });
 
     }
 
-    const {data , isLoading , refetch} = useQuery('getUsers' , getAllUsers);
+    const {data , isLoading , isError , refetch} = useQuery('getUsers' , getAllUsers);
 
     // ====== delete-user ====== //
 
@@ -112,62 +112,68 @@ export default function AllUsers() {
                         visible={true} height="50" width="50" color="var(--active-color)"
                         ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
                     />
-                </div> : <div className={tableCSS.table_cont}>
+                </div> : (isError ? 
+                    <div className={tableCSS.empty_doc}>
+                        <BiErrorAlt />
+                        <h3>Error on fetch data</h3>
+                    </div> : 
+                    <div className={tableCSS.table_cont}>
 
-                    {data.data.data.length > 0 ?
-                        <table className={tableCSS.table}>
+                        {data.data.data.length > 0 ?
+                            <table className={tableCSS.table}>
 
-                            <thead>
+                                <thead>
 
-                                <tr>
+                                    <tr>
 
-                                    <th>User Name</th>
-                                    <th>User Email</th>
-                                    <th>User Phone</th>
-                                    <th>User Role</th>
-                                    <th>User Ban</th>
+                                        <th>User Name</th>
+                                        <th>User Email</th>
+                                        <th>User Phone</th>
+                                        <th>User Role</th>
+                                        <th>User Ban</th>
 
-                                </tr>
+                                    </tr>
 
-                            </thead>
+                                </thead>
 
-                            <tbody>
+                                <tbody>
 
-                                {data.data.data.map(user => <tr key={user._id}>
+                                    {data.data.data.map(user => <tr key={user._id}>
 
-                                    <td>{user.username}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.phone}</td>
-                                    <td>{user.role}</td>
-                                    <td>
-                                        <button 
-                                            onClick={() => firstDeleteStep(user)}
-                                            className={`${tableCSS.actions} ${tableCSS.delete}`}
-                                        >
-                                            <IoBanSharp />
-                                        </button>
-                                        <Link 
-                                            to={`update/${user._id}`}
-                                            className={`${tableCSS.actions} ${tableCSS.update}`}
-                                        >
-                                            <GrUserAdmin className={tableCSS.action_icon} />
-                                        </Link>
-                                    </td>
+                                        <td>{user.username}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.phone}</td>
+                                        <td>{user.role}</td>
+                                        <td>
+                                            <button 
+                                                onClick={() => firstDeleteStep(user)}
+                                                className={`${tableCSS.actions} ${tableCSS.delete}`}
+                                            >
+                                                <IoBanSharp />
+                                            </button>
+                                            <Link 
+                                                to={`update/${user._id}`}
+                                                className={`${tableCSS.actions} ${tableCSS.update}`}
+                                            >
+                                                <GrUserAdmin className={tableCSS.action_icon} />
+                                            </Link>
+                                        </td>
 
-                                </tr>)}
+                                    </tr>)}
 
-                            </tbody>
+                                </tbody>
 
-                        </table> :
-                        <div className={tableCSS.empty_doc}>
+                            </table> :
+                            <div className={tableCSS.empty_doc}>
 
-                            <BiErrorAlt />
-                            <h3>No Users Data</h3>
+                                <BiErrorAlt />
+                                <h3>No Users Data</h3>
 
-                        </div>
-                    }
+                            </div>
+                        }
 
-                </div>
+                    </div>
+                )
             }
 
         </div>

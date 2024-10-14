@@ -38,7 +38,7 @@ export default function Login() {
 
         try {
 
-            const {data} = await Axios.post(`${LoginUser}` , values);
+            const {data} = await Axios.post(`${LoginUser}` , values , {withCredentials: true});
 
             if(data.success){
 

@@ -27,7 +27,7 @@ export default function AddBook() {
     
     const navigate = useNavigate();
 
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     const values = {
 
@@ -49,11 +49,7 @@ export default function AddBook() {
 
         try {
 
-            const {data} = await Axios.post(`${BookAdd}` , values , {
-                headers: {
-                    token
-                }
-            });
+            const {data} = await Axios.post(`${BookAdd}` , values , {withCredentials: true});
 
             if(data.success){
 
