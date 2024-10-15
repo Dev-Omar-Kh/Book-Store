@@ -11,6 +11,8 @@ import { Axios, LoginUser } from '../../API/Api';
 import { useFormik } from 'formik';
 import Status from '../../Components/Common/Status/Status';
 import { ThreeCircles } from 'react-loader-spinner';
+import { jwtDecode } from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 export default function Login() {
 
@@ -42,13 +44,28 @@ export default function Login() {
 
             if(data.success){
 
-                setSuccessMsg(data.message);
+                const token = data.data;
+                const {exp} = jwtDecode(token);
 
-                localStorage.setItem('token' , data.data)
+                const currentTime = Math.floor(Date.now() / 1000);
+                const timeToExpire = exp - currentTime;
 
-                setTimeout(() => {
-                    navigate('/');
-                }, 3600);
+                if (timeToExpire > 0) {
+
+                    setSuccessMsg(data.message);
+
+                    const expiresInDays = timeToExpire / (60 * 60 * 24);
+
+                    Cookies.set('token', token, { expires: expiresInDays });
+
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 3600);
+
+                }
+                else{
+                    setErrMsg('Registration has expired, try again.');
+                }
 
             }
 

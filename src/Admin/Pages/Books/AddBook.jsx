@@ -27,8 +27,6 @@ export default function AddBook() {
     
     const navigate = useNavigate();
 
-    // const token = localStorage.getItem('token');
-
     const values = {
 
         title:'',

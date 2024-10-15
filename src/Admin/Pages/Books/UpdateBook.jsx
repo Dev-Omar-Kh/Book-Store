@@ -42,14 +42,12 @@ export default function UpdateBook() {
     
     const navigate = useNavigate();
 
-    const token = localStorage.getItem('token');
-
     useEffect(() => {
 
         if (bookData && bookData.image) {
             setPreviewImage(bookData.image);
         }
-        
+
     }, [bookData]);
 
     const values = {
@@ -72,11 +70,7 @@ export default function UpdateBook() {
 
         try {
 
-            const {data} = await Axios.patch(`${BookUpdate}/${id}` , values , {
-                headers: {
-                    token
-                }
-            });
+            const {data} = await Axios.patch(`${BookUpdate}/${id}` , values , {withCredentials: true});
 
             if(data.success){
 

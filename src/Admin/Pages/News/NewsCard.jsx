@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 import newsCardCSS from './news.module.css';
-import { MdDeleteOutline } from 'react-icons/md';
+import { MdDeleteOutline, MdEdit } from 'react-icons/md';
 import { Axios, NewsDelete } from '../../../API/Api';
 import { AnimatePresence } from 'framer-motion';
 import Warning from '../../../Components/Common/Warning/Warning';
 import Status from '../../../Components/Common/Status/Status';
+import { Link } from 'react-router-dom';
 
 export default function NewsCard({news , refetch}) {
 
-    const dateStr = news.date;
-    const date = new Date(dateStr);
-    const options = { month: '2-digit', day: '2-digit' };
-    const formattedDate = date.toLocaleDateString('en-US', options).replace(/\//g, '-');
-
     // ====== delete-news ====== //
-
-    const token = localStorage.getItem('token');
 
     const [displayWarn, setDisplayWarn] = useState(false);
     const [newsData, setNewsData] = useState(null);
@@ -43,26 +37,34 @@ export default function NewsCard({news , refetch}) {
 
                 try {
 
-                    const {data} = await Axios.delete(`${NewsDelete}/${deleteNews}` , {headers: {token}});
+                    const {data} = await Axios.delete(`${NewsDelete}/${deleteNews}` , {withCredentials: true});
+
+                    console.log(data);
+
                     if(data.success){
 
-                        setDeleteNews(null);
                         setDisplayWarn(false);
                         setNewsData(null);
                         setSuccessMsg(data.message);
-                        refetch();
+
+                        setTimeout(() => {
+                            refetch();
+                        }, 3600);
 
                     }
 
                 } catch (error) {
-                    setErrMsg(error);
+                    setErrMsg('Something error');
+                }finally{
+                    setDeleteNews(null);
                 }
+
             }
         }
 
         deleteNewsById();
 
-    } , [deleteNews , token , refetch]);
+    } , [deleteNews , refetch]);
 
     // ====== check-for-links ====== //
 
@@ -102,6 +104,7 @@ export default function NewsCard({news , refetch}) {
 
             <div className={newsCardCSS.actions}>
 
+                <Link><MdEdit /></Link>
                 <button onClick={deleteNewsFS}><MdDeleteOutline /></button>
 
             </div>
@@ -110,7 +113,7 @@ export default function NewsCard({news , refetch}) {
 
                 <h3>{news.title}</h3>
 
-                <p className={newsCardCSS.date}>{formattedDate}</p>
+                <p className={newsCardCSS.date}>{news.date}</p>
 
             </div>
 

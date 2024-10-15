@@ -12,8 +12,6 @@ export default function BookCard({book , refetch}) {
 
     // ====== delete-book ======
 
-    const token = localStorage.getItem('token');
-
     const [displayWarn, setDisplayWarn] = useState(false);
     const [bookData, setBookData] = useState(null);
     const [deleteBook, setDeleteBook] = useState(null);
@@ -39,26 +37,31 @@ export default function BookCard({book , refetch}) {
 
                 try {
 
-                    const {data} = await Axios.delete(`${DeleteBook}/${deleteBook}` , {headers: {token}});
+                    const {data} = await Axios.delete(`${DeleteBook}/${deleteBook}` , {withCredentials: true});
+
                     if(data.success){
 
-                        setDeleteBook(null);
                         setDisplayWarn(false);
                         setBookData(null);
                         setSuccessMsg(data.message);
-                        refetch();
+
+                        setTimeout(() => {
+                            refetch();
+                        }, 3600);
 
                     }
 
                 } catch (error) {
                     setErrMsg(error);
+                }finally{
+                    setDeleteBook(null);
                 }
             }
         }
 
         deleteBookById();
 
-    } , [deleteBook , token , refetch]);
+    } , [deleteBook , refetch]);
 
     return <React.Fragment>
 

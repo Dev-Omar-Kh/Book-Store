@@ -4,25 +4,25 @@ import { Link } from 'react-router-dom';
 import { GrArticle } from 'react-icons/gr';
 
 import titleCSS from '../../../Styles/db_title.module.css';
+import errorHandleCSS from '../../../Styles/db_tables.module.css';
 import newsCSS from './news.module.css';
 import NewsCard from './NewsCard';
 import { Axios, GetNews } from '../../../API/Api';
 import { useQuery } from 'react-query';
 import { ThreeCircles } from 'react-loader-spinner';
+import { BiErrorAlt } from 'react-icons/bi';
 
 export default function NewsList() {
 
     // ====== get-all-news ====== //
 
-    const token = localStorage.getItem('token');
-
     const getAllNews = async() => {
 
-        return await Axios.get(`${GetNews}` , {headers: {token}});
+        return await Axios.get(`${GetNews}` , {withCredentials: true});
 
     }
 
-    const {data , isLoading} = useQuery('getAllNews' , getAllNews);
+    const {data , isLoading , isError , refetch} = useQuery('getAllNews' , getAllNews);
 
     const news = data?.data.data;
 
@@ -49,15 +49,25 @@ export default function NewsList() {
 
             {isLoading ? 
                 <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                        <ThreeCircles
-                            visible={true} height="50" width="50" color="var(--active-color)"
-                            ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
-                        />
-                    </div>: <div className={newsCSS.container}>
+                    <ThreeCircles
+                        visible={true} height="50" width="50" color="var(--active-color)"
+                        ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass=""
+                    />
+                </div>: (isError ? <div className={errorHandleCSS.empty_doc}>
 
-                    {news.map( news => <NewsCard key={news._id} news={news} />)}
+                    <BiErrorAlt />
+                    <h3>Error on fetch news</h3>
 
-                </div>
+                </div> : (news.length > 0 ? <div className={newsCSS.container}>
+
+                    {news.map( news => <NewsCard key={news._id} refetch={refetch} news={news} />)}
+
+                </div> : <div className={errorHandleCSS.empty_doc}>
+
+                    <BiErrorAlt />
+                    <h3>No News Data</h3>
+
+                </div>))
             }
 
         </div>

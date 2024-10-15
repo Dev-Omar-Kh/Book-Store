@@ -28,7 +28,7 @@
 
 }
 
-.actions button {
+.actions button , .actions a{
 
     width: 30px;
     height: 30px;
@@ -45,7 +45,7 @@
 
 }
 
-.actions button:hover {
+.actions button:hover , .actions a:hover{
 
     background-color: var(--active-color);
     color: var(--first-color);

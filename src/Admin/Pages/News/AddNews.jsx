@@ -20,8 +20,6 @@ export default function AddNews() {
 
     const navigate = useNavigate();
 
-    const token = localStorage.getItem('token');
-
     const today = new Date();
 
     const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -43,13 +41,7 @@ export default function AddNews() {
 
         try {
 
-            const {data} = await Axios.post(`${NewsAdd}` , values , {
-                headers: {
-                    token
-                }
-            });
-
-            console.log(data);
+            const {data} = await Axios.post(`${NewsAdd}` , values , {withCredentials: true});
 
             if(data.success){
 
@@ -60,12 +52,16 @@ export default function AddNews() {
                 }, 3600);
 
             }
+            else {
+                setErrMsg("Unexpected response format.");
+            }
 
         } catch (error) {
             setErrMsg(error.response.data.message);
+            console.log(error);
+        }finally{
+            setLoading(false);
         }
-
-        setLoading(false);
 
     }
 

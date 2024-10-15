@@ -19,7 +19,7 @@ export default function AllUsers() {
 
     // ====== get-all-users ====== //
 
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     const getAllUsers = async() => {
 
@@ -56,7 +56,7 @@ export default function AllUsers() {
 
                 try {
 
-                    const {data} = await Axios.delete(`${DeleteUsers}/${deleteUser}` , {headers: {token}});
+                    const {data} = await Axios.delete(`${DeleteUsers}/${deleteUser}` , {withCredentials: true});
                     if(data.success){
 
                         setDeleteUser(null);
@@ -75,7 +75,7 @@ export default function AllUsers() {
 
         deleteUserById();
 
-    } , [deleteUser , token , refetch]);
+    } , [deleteUser , refetch]);
 
     return <React.Fragment>
 
